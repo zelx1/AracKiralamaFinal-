@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Kategori Seçiniz...</h1>
+  <h1 *ngIf="!api.OturumKontrol()">Lütfen Oturum Açınız!</h1>
+  <div *ngFor="let urun of araclar"  style="display: inline-flex; margin-left: 20px;margin-top: 10px;" class="mat-elevation-z8">
+    <mat-card class="example-card">
+      <a [routerLink]="['/aracdetay',urun.aracId]">
+      <mat-card-header >
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{urun.aracModel}}</mat-card-title>
+        <mat-card-title>{{urun.aracMarka}}</mat-card-title>
+      </mat-card-header>
+    </a>
+      <img mat-card-image style="width: 200px; align-self: center;" [src]="api.siteUrl+'/Dosyalar/'+urun.aracFoto">
+      &nbsp;
+      <mat-card-content>
+        <h3 style="color: orange;"><b>{{urun.aracFiyat | currency: 'TRY'}}</b></h3>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="Kirala(urun.aracFiyat)">Kirala</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

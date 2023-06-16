@@ -1,0 +1,41 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm" style="margin: 25px;">
+    <mat-form-field appearance="outline">
+      <mat-label>Araç Model</mat-label>
+      <input type="text" matInput placeholder="Araç Model" formControlName="aracModel" required>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Araç Marka</mat-label>
+      <input type="text" matInput placeholder="Araç Marka" formControlName="aracMarka" required>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Araç Fiyat</mat-label>
+      <input type="number" matInput placeholder="Araç Fiyat" formControlName="aracFiyat" required>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Araç Yıl</mat-label>
+      <input type="text" matInput placeholder="Araç Yıl" formControlName="aracYil" required>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Kategori Seçiniz" formControlName="aracKatId" required>
+        <mat-option [value]="kat.katId" *ngFor="let kat of kategoriler"> {{kat.katAdi}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Araç Foto</mat-label>
+      <input matInput placeholder="Arac Foto" required formControlName="aracFoto" #foto>
+    </mat-form-field>
+    <p></p>
+    <img [src]="api.siteUrl+'/Dosyalar/'+foto.value" style="width: 200px;">
+  </form>
+</div>
+<button mat-raised-button color="primary" style="margin-left:15px" [disabled]="frm.invalid" (click)="dialogRef.close(frm.value)">Kaydet</button>&nbsp;
+<button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
